@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portifolio Sistema Marketing</title>
+    <link rel="icon" type="image/svg+xml" href="/portifolio/static/marketing/placeholder.svg" />
+    <meta name="description" content="Portifolio Sistema Marketing" />
+    <meta name="author" content="Portfolio" />
+
+    <meta property="og:title" content="Portifolio Sistema Marketing" />
+    <meta property="og:description" content="Portifolio Sistema Marketing" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/portifolio/static/marketing/placeholder.svg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@portfolio" />
+    <meta name="twitter:image" content="/portifolio/static/marketing/placeholder.svg" />
+  <style>
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #loading-logo {
+      width: 240px;
+      animation: logoBreath 2s ease-in-out infinite;
+    }
+    @keyframes logoBreath {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.93); }
+    }
+  </style>
+  </head>
+
+  <body>
+    <div id="loading-screen">
+      <img id="loading-logo" src="/portifolio/static/marketing/completo-branco.svg" alt="Portifolio Sistema Marketing" />
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

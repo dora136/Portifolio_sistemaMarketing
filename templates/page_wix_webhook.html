@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Forms - Direcionamento{% endblock %}
+
+{% block content %}
+<h1>Forms: envios via Webhook</h1>
+<p>Esta página lista os últimos envios recebidos pelo endpoint <code>POST /marketing/api/forms/webhook</code>.</p>
+
+{% if has_secret %}
+  <p>Validação ativa: envie <code>?secret=***</code> ou header <code>X-Core-Webhook-Secret</code>.</p>
+{% else %}
+  <p><strong>Atenção:</strong> sem secret configurado (<code>FORMS_WEBHOOK_SECRET</code>), qualquer um pode postar neste endpoint.</p>
+{% endif %}
+
+{% if updates and updates|length > 0 %}
+  <div style="margin-top:16px; border:1px solid rgba(76,149,108,0.25); border-radius:10px; overflow:hidden;">
+    <div style="padding:12px 14px; background:#FEEEC3; font-weight:600;">Atualizações gerais</div>
+    <div>
+      {% for u in updates %}
+        <div style="display:flex; gap:12px; align-items:center; padding:12px 14px; border-top:1px solid rgba(76,149,108,0.25);">
+          <div style="flex:1;">
+            <div><strong>{{ u.contact_name }}</strong> preencheu o formulário "<strong>{{ u.form_name }}</strong>".</div>
+            <div style="font-size:12px; color:#4C956C;">
+              {% if u.created_date_iso %}{{ u.created_date_iso }}{% else %}-{% endif %}
+              • {{ u.created_relative }}
+            </div>
+          </div>
+          <div style="font-size:12px; color:#4C956C; text-align:right; min-width:110px;">
+            {% if u.submission_id %}<div>ID: <code>{{ u.submission_id }}</code></div>{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  <p>Nenhum evento recebido ainda.</p>
+  <div class="code"><pre>Teste manual (PowerShell):
+Invoke-RestMethod -Method Post `
+  -Uri "http://localhost:9000/marketing/api/forms/webhook" `
+  -ContentType "application/json" `
+  -Body '{"contactName":"Teste","formName":"Contato","submissionId":"abc"}'
+
+Verificar:
+Invoke-RestMethod "http://localhost:9000/marketing/api/forms/webhook/events"</pre></div>
+  <p style="font-size:12px; color:#4C956C;">Obs: o Forms Automations não consegue chamar <code>localhost</code>. Para produção, use uma URL pública (Cloud) apontando para <code>/marketing/api/forms/webhook</code>.</p>
+{% endif %}
+
+{% endblock %}

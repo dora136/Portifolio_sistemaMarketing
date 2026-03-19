@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ app_name }}{% endblock %}
+
+{% block content %}
+<h1>{{ app_name }}</h1>
+<p>Estrutura aplicada no padrao Portfolio (FastAPI + routes + templates + static).</p>
+
+{% if frontend_built %}
+<p>Frontend compilado encontrado. Abra em: <a href="/marketing/static/marketing/index.html" target="_blank">/marketing/static/marketing/index.html</a></p>
+{% else %}
+<p>Frontend ainda nao compilado para `static/marketing`.</p>
+<p>Projeto frontend esta em: <code>infrastructure/frontend/marketing-hub-pro-main</code></p>
+<div class="code"><pre>cd infrastructure/frontend/marketing-hub-pro-main
+npm install
+npm run build
+Copy-Item dist\* ..\..\..\static\marketing\ -Recurse -Force</pre></div>
+{% endif %}
+
+<p><a href="{{ portal_url }}" target="_blank">Portal Principal</a></p>
+{% endblock %}

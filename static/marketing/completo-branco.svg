@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" role="img" aria-label="Portfolio Marketing Hub">
+  <rect width="480" height="160" rx="24" fill="#2C6E49"/>
+  <circle cx="84" cy="80" r="34" fill="#4C956C"/>
+  <path d="M70 82l10 10 20-24" fill="none" stroke="#FEEEC3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="140" y="72" fill="#FEEEC3" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="700">Portfolio</text>
+  <text x="140" y="104" fill="#FFC9B9" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="400">Marketing Hub</text>
+</svg>
